@@ -18,7 +18,7 @@ import logo from "../../public/images/logo.svg";
 import { NextLinkComposed } from "./Link";
 import Link from "next/link";
 
-const navItems = [
+export const navItems = [
   { name: "Services", route: "/services" },
   { name: "Schedule A Job", route: "/schedule-job" },
   { name: "Contact Us", route: "/contact" },
@@ -38,7 +38,10 @@ const Nav = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="absolute"
+      sx={{ background: "transparent", boxShadow: "none", mt: 3 }}
+    >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Box
@@ -119,7 +122,7 @@ const Nav = () => {
             <Button
               startIcon={<PersonSharp />}
               variant="outlined"
-              color="secondary"
+              sx={{ color: "white", borderColor: "white" }}
             >
               Admin
             </Button>

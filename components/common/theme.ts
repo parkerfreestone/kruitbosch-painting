@@ -11,10 +11,13 @@ export const poppins = Poppins({
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#463f3a",
+      main: "#001427",
     },
     secondary: {
-      main: "#bcb8b1",
+      main: "#708d81",
+    },
+    error: {
+      main: "#bf0603",
     },
   },
   typography: {
