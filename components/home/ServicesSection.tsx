@@ -40,7 +40,7 @@ const ServicesSection = ({
   includeCardActions = false,
 }: ServicesSectionProps) => {
   return (
-    <Grid container wrap={isMediumScreen ? "wrap" : "noWrap"} gap={2}>
+    <Grid container wrap={isMediumScreen ? "wrap" : "nowrap"} spacing={2}>
       {cardContent.map(({ icon, heading, subHeading, services }) => (
         <Grid item xs={12} md={4} sx={{ display: "flex" }} key={heading}>
           <Card variant="outlined" sx={{ width: "100%" }}>

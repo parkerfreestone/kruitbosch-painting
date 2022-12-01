@@ -65,7 +65,12 @@ const Services = () => {
         desc="Prompt and accurate scheduling is one of our main priorities."
       />
       <Container maxWidth="lg" sx={{ py: 5 }}>
-        <Typography component="h2" variant="h4" fontWeight={900}>
+        <Typography
+          component="h2"
+          variant="h4"
+          fontWeight={900}
+          textTransform="uppercase"
+        >
           Some of our services include
         </Typography>
         <Typography component="p" variant="h6" mb={3}>

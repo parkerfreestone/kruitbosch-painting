@@ -10,11 +10,13 @@ import {
   CabinSharp,
   CorporateFareSharp,
   BadgeSharp,
+  FormatPaintSharp,
 } from "@mui/icons-material";
 import theme from "../components/common/theme";
 import Banner from "../public/images/home-banner.jpg";
 import HeroBanner from "../components/home/HeroBanner";
 import ServicesSection from "../components/home/ServicesSection";
+import Gallery from "../components/home/Gallery";
 
 const cardContent = [
   {
@@ -28,9 +30,9 @@ const cardContent = [
     subHeading: "Interior & Exterior",
   },
   {
-    icon: <BadgeSharp fontSize="large" sx={{ color: "#f4d58d" }} />,
-    heading: "Employment",
-    subHeading: "We're hiring!",
+    icon: <FormatPaintSharp fontSize="large" sx={{ color: "#f4d58d" }} />,
+    heading: "Specialty",
+    subHeading: "Interior & Exterior!",
   },
 ];
 
@@ -77,6 +79,7 @@ const Home = () => {
           component="h2"
           variant={isMediumScreen ? "h5" : "h3"}
           fontWeight={900}
+          textTransform="uppercase"
         >
           Here&lsquo;s what we can do for you
         </Typography>
