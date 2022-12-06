@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   Stack,
@@ -16,7 +17,8 @@ import theme from "../components/common/theme";
 import Banner from "../public/images/home-banner.jpg";
 import HeroBanner from "../components/home/HeroBanner";
 import ServicesSection from "../components/home/ServicesSection";
-import Gallery from "../components/home/Gallery";
+import { NextLinkComposed } from "../components/common/Link";
+import { Gallery } from "../components/common/photo-gallery/Gallery";
 
 const cardContent = [
   {
@@ -61,13 +63,21 @@ const Home = () => {
         imagePath={Banner.src}
         actionArea={
           <Stack direction="row" sx={{ mt: 2 }} gap={2}>
-            <Button variant="contained" color="secondary">
+            <Button
+              component={NextLinkComposed}
+              variant="contained"
+              color="secondary"
+              to="/quote"
+            >
               Get a quote
             </Button>
             <Button
+              component={NextLinkComposed}
               variant="outlined"
               endIcon={<ArrowRightAltSharp />}
               sx={{ color: "white", borderColor: "white" }}
+              color="secondary"
+              to="/schedule-a-job"
             >
               Schedule a job
             </Button>
@@ -96,6 +106,26 @@ const Home = () => {
           includeCardActions
         />
       </Container>
+      <Box bgcolor="#708d81">
+        <Container maxWidth="lg" sx={{ py: { xs: 5, md: 10 } }}>
+          <Typography
+            component="h2"
+            variant={isMediumScreen ? "h5" : "h3"}
+            fontWeight={900}
+            textTransform="uppercase"
+          >
+            Still Not Convinced?
+          </Typography>
+          <Typography
+            component="p"
+            variant={isMediumScreen ? "body1" : "h6"}
+            mb={3}
+          >
+            Here&apos;s Some Of Our Work
+          </Typography>
+          <Gallery />
+        </Container>
+      </Box>
     </>
   );
 };

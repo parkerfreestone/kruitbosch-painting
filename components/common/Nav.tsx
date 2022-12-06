@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { MenuSharp, PersonSharp } from "@mui/icons-material";
+import {
+  MenuSharp,
+  PersonSharp,
+  QuestionAnswerSharp,
+} from "@mui/icons-material";
 import {
   AppBar,
   Box,
@@ -117,11 +121,21 @@ const Nav = () => {
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
               justifyContent: "flex-end",
+              gap: 2,
             }}
           >
             <Button
+              startIcon={<QuestionAnswerSharp />}
+              variant="outlined"
+              color="secondary"
+              sx={{ color: "white", borderColor: "white" }}
+            >
+              Get A Quote
+            </Button>
+            <Button
               startIcon={<PersonSharp />}
               variant="outlined"
+              color="secondary"
               sx={{ color: "white", borderColor: "white" }}
             >
               Admin

@@ -14,7 +14,7 @@ import theme from "../common/theme";
 interface HeroBannerProps {
   heading: string | ReactElement;
   desc?: string;
-  actionArea?: ReactElement;
+  actionArea?: React.ReactNode;
   imagePath?: string;
   highlightIndex?: number;
   highlightColor?: string;
@@ -33,7 +33,6 @@ const HeroBanner = ({
       width="100vw"
       position="relative"
       top={0}
-      zIndex={-1}
       sx={{
         background: imagePath
           ? `linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)), url(${imagePath})`
