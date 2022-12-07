@@ -18,7 +18,7 @@ import Banner from "../public/images/home-banner.jpg";
 import HeroBanner from "../components/home/HeroBanner";
 import ServicesSection from "../components/home/ServicesSection";
 import { NextLinkComposed } from "../components/common/Link";
-import { Gallery } from "../components/common/photo-gallery/Gallery";
+import { FilterableGallery } from "../components/common/photo-gallery/Gallery";
 
 const cardContent = [
   {
@@ -123,7 +123,7 @@ const Home = () => {
           >
             Here&apos;s Some Of Our Work
           </Typography>
-          <Gallery />
+          <FilterableGallery />
         </Container>
       </Box>
     </>

@@ -24,7 +24,7 @@ import Link from "next/link";
 
 export const navItems = [
   { name: "Services", route: "/services" },
-  { name: "Schedule A Job", route: "/schedule-job" },
+  { name: "Schedule A Job", route: "/schedule-a-job" },
   { name: "Contact Us", route: "/contact" },
   { name: "Employment", route: "/employment" },
   { name: "Photos", route: "/photos" },
@@ -131,14 +131,6 @@ const Nav = () => {
               sx={{ color: "white", borderColor: "white" }}
             >
               Get A Quote
-            </Button>
-            <Button
-              startIcon={<PersonSharp />}
-              variant="outlined"
-              color="secondary"
-              sx={{ color: "white", borderColor: "white" }}
-            >
-              Admin
             </Button>
           </Box>
         </Toolbar>
