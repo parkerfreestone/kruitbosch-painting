@@ -24,12 +24,7 @@ import HeroBanner from "../components/home/HeroBanner";
 
 const Contact = () => {
   const [submissionMessage, setSubmissionMessage] = useState<string | null>("");
-  const [formData, setFormdData] = useState<{
-    name: string;
-    email: string;
-    phone: string;
-    request: string;
-  }>({
+  const [formData, setFormdData] = useState<any>({
     name: "",
     email: "",
     phone: "",
@@ -90,6 +85,7 @@ are  the best in the industry!"
                   <TextField
                     label="Phone"
                     value={formData.phone}
+                    type="tel"
                     onChange={(e) =>
                       setFormdData({ ...formData, phone: e.target.value })
                     }

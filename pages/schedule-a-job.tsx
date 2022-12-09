@@ -77,12 +77,9 @@ const ScheduleAJob = () => {
           onSubmit={handleFormSubmit}
           sx={{ p: 5 }}
         >
-          <Stack direction="row" display="flex" alignItems="center">
-            <ReceiptLongSharp fontSize="large" />
-            <Typography variant="h4" fontWeight={900}>
-              General Contractors and Foreman
-            </Typography>
-          </Stack>
+          <Typography variant="h4" fontWeight={900}>
+            General Contractors and Foreman
+          </Typography>
 
           <Divider sx={{ py: 2 }} />
           <Typography variant="h6" fontWeight={900} py={2}>
