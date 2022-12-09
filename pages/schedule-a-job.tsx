@@ -1,6 +1,7 @@
-import { EditAttributesSharp, ReceiptLongSharp } from "@mui/icons-material";
+import { ArrowRightAltSharp, ReceiptLongSharp } from "@mui/icons-material";
 import {
   Box,
+  Button,
   Container,
   Divider,
   FormControl,
@@ -9,18 +10,19 @@ import {
   Paper,
   Radio,
   RadioGroup,
+  Snackbar,
   TextField,
   Typography,
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useState } from "react";
-import { setConstantValue } from "typescript";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { SyntheticEvent, useState } from "react";
 import HeroBanner from "../components/home/HeroBanner";
 
 const ScheduleAJob = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     name: "",
     builder: "",
     startDate: null,
@@ -38,6 +40,28 @@ const ScheduleAJob = () => {
     colorChanges: "",
     extras: "",
   });
+  const [submissionMessage, setSubmissionMessage] = useState<string | null>("");
+
+  const supabase = useSupabaseClient();
+
+  const handleFormSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
+
+    const { error } = await supabase.from("Jobs").insert([formData]);
+
+    if (!error) {
+      setSubmissionMessage(
+        "Form successfully submitted. We will get back to you as soon as possible."
+      );
+      return;
+    }
+
+    setSubmissionMessage(
+      `There was an error submitting the form. Please contact us if you keep having issues: ${error.message}`
+    );
+
+    setFormData(null);
+  };
 
   return (
     <>
@@ -50,6 +74,7 @@ const ScheduleAJob = () => {
           variant="outlined"
           component="form"
           autoComplete="off"
+          onSubmit={handleFormSubmit}
           sx={{ p: 5 }}
         >
           <Stack direction="row" display="flex" alignItems="center">
@@ -81,13 +106,8 @@ const ScheduleAJob = () => {
               label="Builder"
             />
           </Stack>
-        </Paper>
-        <Paper
-          variant="outlined"
-          component="form"
-          autoComplete="off"
-          sx={{ p: 5, my: 2 }}
-        >
+
+          <Divider sx={{ py: 2 }} />
           <Typography variant="h6" fontWeight={900} py={2}>
             Job Information
           </Typography>
@@ -205,13 +225,9 @@ const ScheduleAJob = () => {
               </RadioGroup>
             </FormControl>
           </Stack>
-        </Paper>
-        <Paper
-          variant="outlined"
-          component="form"
-          autoComplete="off"
-          sx={{ p: 5 }}
-        >
+
+          <Divider sx={{ py: 2 }} />
+
           <Typography variant="h6" fontWeight={900} py={2}>
             Paint / Stain Color
           </Typography>
@@ -281,8 +297,25 @@ const ScheduleAJob = () => {
               setFormData({ ...formData, extras: e.target.value })
             }
           />
+          <Box mt={2} display="flex" justifyContent="flex-end">
+            <Button
+              type="submit"
+              variant="contained"
+              endIcon={<ArrowRightAltSharp />}
+            >
+              Submit Form
+            </Button>
+          </Box>
         </Paper>
       </Container>
+
+      <Snackbar
+        open={!!submissionMessage}
+        message={submissionMessage}
+        onClose={() => setSubmissionMessage(null)}
+        autoHideDuration={4000}
+        anchorOrigin={{ horizontal: "center", vertical: "top" }}
+      />
     </>
   );
 };

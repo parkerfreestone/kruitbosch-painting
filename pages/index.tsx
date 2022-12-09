@@ -62,12 +62,16 @@ const Home = () => {
         personal service you'll come to expect and enjoy.`}
         imagePath={Banner.src}
         actionArea={
-          <Stack direction="row" sx={{ mt: 2 }} gap={2}>
+          <Stack
+            direction={isMediumScreen ? "column" : "row"}
+            sx={{ mt: 2 }}
+            gap={2}
+          >
             <Button
               component={NextLinkComposed}
               variant="contained"
               color="secondary"
-              to="/quote"
+              to="/contact"
             >
               Get a quote
             </Button>

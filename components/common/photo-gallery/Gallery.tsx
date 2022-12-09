@@ -26,7 +26,6 @@ export const FilterableGallery = () => {
 
   const handleClick = (index: number, item: any) => {
     setImageIndex(index);
-    console.log(index);
   };
   const handleClose = () => setImageIndex(-1);
   const handleMovePrev = () => setImageIndex(prevIndex);
@@ -62,7 +61,7 @@ export const FilterableGallery = () => {
 
   return (
     <Box>
-      <Stack direction="row" spacing={1} mb={2}>
+      <Stack direction={{ xs: "column", sm: "row" }} spacing={1} mb={2}>
         {["Residential", "Commercial", "Floors", "Custom"].map((service) => (
           <Chip
             key={service}

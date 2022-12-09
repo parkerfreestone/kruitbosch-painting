@@ -85,7 +85,12 @@ const Nav = () => {
               sx={{ display: { xs: "block", md: "none" } }}
             >
               {navItems.map(({ name, route }) => (
-                <MenuItem key={name} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={name}
+                  component={NextLinkComposed}
+                  to={route}
+                  onClick={handleCloseNavMenu}
+                >
                   <Typography textAlign="center">{name}</Typography>
                 </MenuItem>
               ))}
@@ -128,6 +133,8 @@ const Nav = () => {
               startIcon={<QuestionAnswerSharp />}
               variant="outlined"
               color="secondary"
+              component={NextLinkComposed}
+              to="/contact"
               sx={{ color: "white", borderColor: "white" }}
             >
               Get A Quote
