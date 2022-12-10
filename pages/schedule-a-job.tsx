@@ -85,9 +85,10 @@ const ScheduleAJob = () => {
           <Typography variant="h6" fontWeight={900} py={2}>
             General Information
           </Typography>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
             <TextField
               fullWidth
+              required
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
@@ -96,6 +97,7 @@ const ScheduleAJob = () => {
             />
             <TextField
               fullWidth
+              required
               onChange={(e) =>
                 setFormData({ ...formData, builder: e.target.value })
               }
@@ -119,7 +121,7 @@ const ScheduleAJob = () => {
               renderInput={(params) => <TextField {...params} sx={{ mb: 2 }} />}
             />
           </LocalizationProvider>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
             <TextField
               fullWidth
               onChange={(e) =>
@@ -155,7 +157,11 @@ const ScheduleAJob = () => {
               label="Style"
             />
           </Stack>
-          <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            spacing={2}
+            sx={{ mt: 2 }}
+          >
             <FormControl>
               <FormLabel id="finish">Finish</FormLabel>
               <RadioGroup
@@ -228,7 +234,7 @@ const ScheduleAJob = () => {
           <Typography variant="h6" fontWeight={900} py={2}>
             Paint / Stain Color
           </Typography>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
             <TextField
               fullWidth
               onChange={(e) =>

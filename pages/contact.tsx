@@ -59,7 +59,7 @@ are  the best in the industry!"
       />
       <Container maxWidth="lg">
         <Grid container spacing={5} sx={{ my: 5 }}>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <Paper variant="outlined" sx={{ p: 5 }}>
               <Typography variant="h5" fontWeight={900}>
                 Get A Quote
@@ -110,7 +110,7 @@ are  the best in the industry!"
               </Box>
             </Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <Typography variant="h4" fontWeight={900}>
               Simply Give Us A Call!
             </Typography>
