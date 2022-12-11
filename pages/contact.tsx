@@ -43,6 +43,7 @@ const Contact = () => {
       setSubmissionMessage(
         "Form successfully submitted. We will get back to you as soon as possible."
       );
+      setFormdData({ name: "", email: "", phone: "", request: "" });
       return;
     }
 

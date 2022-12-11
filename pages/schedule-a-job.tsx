@@ -57,31 +57,30 @@ const ScheduleAJob = () => {
       setSubmissionMessage(
         "Form successfully submitted. We will get back to you as soon as possible."
       );
+      setFormData({
+        name: "",
+        builder: "",
+        startDate: null,
+        job: "",
+        lotNumber: 0,
+        totalSqft: 0,
+        style: "",
+        finish: "",
+        rail: "",
+        wallColor: "",
+        trimColor: "",
+        ceilingColor: "",
+        stainColor: "",
+        exteriorColor: "",
+        colorChanges: "",
+        extras: "",
+      });
       return;
     }
 
     setSubmissionMessage(
       `There was an error submitting the form. Please contact us if you keep having issues: ${error.message}`
     );
-
-    setFormData({
-      name: "",
-      builder: "",
-      startDate: null,
-      job: "",
-      lotNumber: 0,
-      totalSqft: 0,
-      style: "",
-      finish: "",
-      rail: "",
-      wallColor: "",
-      trimColor: "",
-      ceilingColor: "",
-      stainColor: "",
-      exteriorColor: "",
-      colorChanges: "",
-      extras: "",
-    });
   };
 
   return (
