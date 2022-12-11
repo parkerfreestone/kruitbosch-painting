@@ -6,7 +6,13 @@ import { navItems } from "./Nav";
 const Footer = () => {
   return (
     <>
-      <Box sx={{ background: "#001427", py: 3, color: "#fff" }}>
+      <Box
+        sx={{
+          background: "#001427",
+          py: 3,
+          color: "#fff",
+        }}
+      >
         <Container maxWidth="lg">
           <Typography component="p" variant="h5" fontWeight={900} py={3}>
             Kruitbosch Painting Inc.
@@ -44,14 +50,21 @@ const Footer = () => {
                     {name}
                   </Button>
                 ))}
+                <Button
+                  component={NextLinkComposed}
+                  to={"/admin"}
+                  sx={{ color: "white", display: "inline-block" }}
+                >
+                  Admin Panel
+                </Button>
               </Stack>
             </Grid>
           </Grid>
         </Container>
       </Box>
-      <Box sx={{ background: "#f4d58d", p: 1, color: "#fff" }}>
+      <Box sx={{ background: "#031b31", p: 1, color: "#fff" }}>
         <Container maxWidth="lg">
-          <Typography variant="body1" color="primary">
+          <Typography variant="body1" color="white">
             Kruitbosch Painting Inc. © 2022
           </Typography>
         </Container>

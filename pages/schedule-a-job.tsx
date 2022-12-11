@@ -18,11 +18,12 @@ import { Stack } from "@mui/system";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 import { SyntheticEvent, useState } from "react";
 import HeroBanner from "../components/home/HeroBanner";
 
 const ScheduleAJob = () => {
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState<any | null>({
     name: "",
     builder: "",
     startDate: null,
@@ -32,11 +33,11 @@ const ScheduleAJob = () => {
     style: "",
     finish: "",
     rail: "",
-    wallPaint: "",
-    trimPaint: "",
-    ceilingPaint: "",
-    stainPaint: "",
-    exteriorPaint: "",
+    wallColor: "",
+    trimColor: "",
+    ceilingColor: "",
+    stainColor: "",
+    exteriorColor: "",
     colorChanges: "",
     extras: "",
   });
@@ -44,10 +45,12 @@ const ScheduleAJob = () => {
 
   const supabase = useSupabaseClient();
 
+  const router = useRouter();
+
   const handleFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const { error } = await supabase.from("Jobs").insert([formData]);
+    const { error } = await supabase.from("jobs").insert([formData]);
 
     if (!error) {
       setSubmissionMessage(
@@ -60,7 +63,24 @@ const ScheduleAJob = () => {
       `There was an error submitting the form. Please contact us if you keep having issues: ${error.message}`
     );
 
-    setFormData(null);
+    setFormData({
+      name: "",
+      builder: "",
+      startDate: null,
+      job: "",
+      lotNumber: 0,
+      totalSqft: 0,
+      style: "",
+      finish: "",
+      rail: "",
+      wallColor: "",
+      trimColor: "",
+      ceilingColor: "",
+      stainColor: "",
+      exteriorColor: "",
+      colorChanges: "",
+      extras: "",
+    });
   };
 
   return (
@@ -77,20 +97,18 @@ const ScheduleAJob = () => {
           onSubmit={handleFormSubmit}
           sx={{ p: 5 }}
         >
-          <Stack direction="row" display="flex" alignItems="center">
-            <ReceiptLongSharp fontSize="large" />
-            <Typography variant="h4" fontWeight={900}>
-              General Contractors and Foreman
-            </Typography>
-          </Stack>
+          <Typography variant="h4" component="h2" fontWeight={900}>
+            General Contractors and Foreman
+          </Typography>
 
           <Divider sx={{ py: 2 }} />
-          <Typography variant="h6" fontWeight={900} py={2}>
+          <Typography variant="h6" component="h3" fontWeight={900} py={2}>
             General Information
           </Typography>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
             <TextField
               fullWidth
+              required
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
@@ -99,6 +117,7 @@ const ScheduleAJob = () => {
             />
             <TextField
               fullWidth
+              required
               onChange={(e) =>
                 setFormData({ ...formData, builder: e.target.value })
               }
@@ -108,7 +127,7 @@ const ScheduleAJob = () => {
           </Stack>
 
           <Divider sx={{ py: 2 }} />
-          <Typography variant="h6" fontWeight={900} py={2}>
+          <Typography variant="h6" component="h3" fontWeight={900} py={2}>
             Job Information
           </Typography>
 
@@ -118,11 +137,11 @@ const ScheduleAJob = () => {
               onChange={(newValue) =>
                 setFormData({ ...formData, startDate: newValue })
               }
-              value={formData.startDate}
+              value={formData?.startDate}
               renderInput={(params) => <TextField {...params} sx={{ mb: 2 }} />}
             />
           </LocalizationProvider>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
             <TextField
               fullWidth
               onChange={(e) =>
@@ -158,13 +177,17 @@ const ScheduleAJob = () => {
               label="Style"
             />
           </Stack>
-          <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            spacing={2}
+            sx={{ mt: 2 }}
+          >
             <FormControl>
               <FormLabel id="finish">Finish</FormLabel>
               <RadioGroup
                 row
                 name="finish"
-                value={formData.finish}
+                value={formData?.finish}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setFormData({
                     ...formData,
@@ -190,11 +213,12 @@ const ScheduleAJob = () => {
               </RadioGroup>
             </FormControl>
             <FormControl>
-              <FormLabel id="rail">Rail</FormLabel>
+              <FormLabel id="rail-label">Rail</FormLabel>
               <RadioGroup
                 row
+                aria-labelledby="rail-label"
                 name="rail"
-                value={formData.rail}
+                value={formData?.rail}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setFormData({
                     ...formData,
@@ -228,14 +252,14 @@ const ScheduleAJob = () => {
 
           <Divider sx={{ py: 2 }} />
 
-          <Typography variant="h6" fontWeight={900} py={2}>
+          <Typography variant="h6" component="h3" fontWeight={900} py={2}>
             Paint / Stain Color
           </Typography>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, wallPaint: e.target.value })
+                setFormData({ ...formData, wallColor: e.target.value })
               }
               id="wall"
               label="Wall"
@@ -243,7 +267,7 @@ const ScheduleAJob = () => {
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, trimPaint: e.target.value })
+                setFormData({ ...formData, trimColor: e.target.value })
               }
               id="trim"
               label="Trim"
@@ -251,7 +275,7 @@ const ScheduleAJob = () => {
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, ceilingPaint: e.target.value })
+                setFormData({ ...formData, ceilingColor: e.target.value })
               }
               id="ceiling"
               label="Ceiling"
@@ -259,7 +283,7 @@ const ScheduleAJob = () => {
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, stainPaint: e.target.value })
+                setFormData({ ...formData, stainColor: e.target.value })
               }
               id="stain"
               label="Stain"
@@ -267,7 +291,7 @@ const ScheduleAJob = () => {
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, exteriorPaint: e.target.value })
+                setFormData({ ...formData, exteriorColor: e.target.value })
               }
               id="exterior"
               label="Exterior"
@@ -280,7 +304,7 @@ const ScheduleAJob = () => {
             label="Color Changes"
             placeholder="Description and Color"
             sx={{ mt: 2 }}
-            value={formData.colorChanges}
+            value={formData?.colorChanges}
             onChange={(e) =>
               setFormData({ ...formData, colorChanges: e.target.value })
             }
@@ -292,7 +316,7 @@ const ScheduleAJob = () => {
             label="Extras"
             placeholder="Please Provide any Addtional Information"
             sx={{ mt: 2 }}
-            value={formData.extras}
+            value={formData?.extras}
             onChange={(e) =>
               setFormData({ ...formData, extras: e.target.value })
             }

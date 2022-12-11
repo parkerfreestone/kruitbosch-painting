@@ -24,12 +24,7 @@ import HeroBanner from "../components/home/HeroBanner";
 
 const Contact = () => {
   const [submissionMessage, setSubmissionMessage] = useState<string | null>("");
-  const [formData, setFormdData] = useState<{
-    name: string;
-    email: string;
-    phone: string;
-    request: string;
-  }>({
+  const [formData, setFormdData] = useState<any>({
     name: "",
     email: "",
     phone: "",
@@ -41,7 +36,7 @@ const Contact = () => {
   const handleFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const { error } = await supabase.from("Contact").insert([formData]);
+    const { error } = await supabase.from("contact").insert([formData]);
 
     if (!error) {
       setSubmissionMessage(
@@ -64,9 +59,9 @@ are  the best in the industry!"
       />
       <Container maxWidth="lg">
         <Grid container spacing={5} sx={{ my: 5 }}>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <Paper variant="outlined" sx={{ p: 5 }}>
-              <Typography variant="h5" fontWeight={900}>
+              <Typography variant="h5" component="h2" fontWeight={900}>
                 Get A Quote
               </Typography>
               <Typography variant="body1">Or Request Information</Typography>
@@ -82,6 +77,7 @@ are  the best in the industry!"
                   />
                   <TextField
                     label="Email"
+                    type="email"
                     value={formData.email}
                     onChange={(e) =>
                       setFormdData({ ...formData, email: e.target.value })
@@ -90,6 +86,7 @@ are  the best in the industry!"
                   <TextField
                     label="Phone"
                     value={formData.phone}
+                    type="tel"
                     onChange={(e) =>
                       setFormdData({ ...formData, phone: e.target.value })
                     }
@@ -114,8 +111,8 @@ are  the best in the industry!"
               </Box>
             </Paper>
           </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h4" fontWeight={900}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h4" component="h2" fontWeight={900}>
               Simply Give Us A Call!
             </Typography>
             <Stack spacing={2}>
@@ -125,6 +122,7 @@ are  the best in the industry!"
                   <Stack>
                     <Typography
                       variant="h6"
+                      component="h3"
                       fontWeight={900}
                       style={{ marginBottom: 0 }}
                     >
@@ -142,6 +140,7 @@ are  the best in the industry!"
                   <Stack>
                     <Typography
                       variant="h6"
+                      component="h3"
                       fontWeight={900}
                       style={{ marginBottom: 0 }}
                     >

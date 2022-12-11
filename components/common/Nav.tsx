@@ -106,7 +106,16 @@ const Nav = () => {
               display: { xs: "block", flexGrow: 1, md: "none" },
             }}
           >
-            <Image src={logo} alt="KPI" width={65} style={{ marginTop: 5 }} />
+            <Link href={"/"}>
+              <div>
+                <Image
+                  src={logo}
+                  alt="KPI"
+                  width={65}
+                  style={{ marginTop: 5 }}
+                />
+              </div>
+            </Link>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {navItems.map(({ name, route }) => (
