@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Box, Chip, Grid, Stack } from "@mui/material";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Gallery } from "react-grid-gallery";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
-type GalleryFilter = "residential" | "commercial" | "custom" | "floors";
+export type GalleryFilter = "residential" | "commercial" | "custom" | "floors";
 
 const CDNURL =
   "https://lrnpsaywzwvqlwziqayq.supabase.co/storage/v1/object/public/images";

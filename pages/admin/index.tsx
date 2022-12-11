@@ -1,4 +1,4 @@
-import { LogoutSharp } from "@mui/icons-material";
+import { ArrowLeftSharp, LogoutSharp } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -11,10 +11,12 @@ import {
 import { Container } from "@mui/system";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { SyntheticEvent, useState } from "react";
-import { Login } from "../../components/dashboard/Login";
-import { Register } from "../../components/dashboard/Register";
-import { JobSubmission } from "../../components/dashboard/tabs/JobSubmission";
+import { Login } from "../../components/admin/Login";
+import { Register } from "../../components/admin/Register";
+import { JobSubmission } from "../../components/admin/tabs/JobSubmission";
 import theme from "../../components/common/theme";
+import { ContactSubmission } from "../../components/admin/tabs/ContactSubmission";
+import { ImageUpload } from "../../components/admin/tabs/ImageUpload";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -83,10 +85,10 @@ const Dashboard = () => {
             <JobSubmission />
           </TabPanel>
           <TabPanel value={tabIndex} index={1}>
-            <Typography>Contact Submissions</Typography>
+            <ContactSubmission />
           </TabPanel>
           <TabPanel value={tabIndex} index={2}>
-            <Typography>Image Upload</Typography>
+            <ImageUpload />
           </TabPanel>
           <TabPanel value={tabIndex} index={3}>
             <Register />

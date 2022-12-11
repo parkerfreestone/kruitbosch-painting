@@ -39,7 +39,9 @@ const ServicesSection = ({
           <Card variant="outlined" sx={{ width: "100%" }}>
             <CardContent>
               {icon}
-              <Typography variant="h6">{heading}</Typography>
+              <Typography variant="h6" component="h3">
+                {heading}
+              </Typography>
               <Typography>{subHeading}</Typography>
               {services ? (
                 <>

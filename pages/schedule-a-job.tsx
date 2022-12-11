@@ -32,11 +32,11 @@ const ScheduleAJob = () => {
     style: "",
     finish: "",
     rail: "",
-    wallPaint: "",
-    trimPaint: "",
-    ceilingPaint: "",
-    stainPaint: "",
-    exteriorPaint: "",
+    wallColor: "",
+    trimColor: "",
+    ceilingColor: "",
+    stainColor: "",
+    exteriorColor: "",
     colorChanges: "",
     extras: "",
   });
@@ -47,7 +47,7 @@ const ScheduleAJob = () => {
   const handleFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const { error } = await supabase.from("Jobs").insert([formData]);
+    const { error } = await supabase.from("jobs").insert([formData]);
 
     if (!error) {
       setSubmissionMessage(
@@ -77,12 +77,12 @@ const ScheduleAJob = () => {
           onSubmit={handleFormSubmit}
           sx={{ p: 5 }}
         >
-          <Typography variant="h4" fontWeight={900}>
+          <Typography variant="h4" component="h2" fontWeight={900}>
             General Contractors and Foreman
           </Typography>
 
           <Divider sx={{ py: 2 }} />
-          <Typography variant="h6" fontWeight={900} py={2}>
+          <Typography variant="h6" component="h3" fontWeight={900} py={2}>
             General Information
           </Typography>
           <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
@@ -107,7 +107,7 @@ const ScheduleAJob = () => {
           </Stack>
 
           <Divider sx={{ py: 2 }} />
-          <Typography variant="h6" fontWeight={900} py={2}>
+          <Typography variant="h6" component="h3" fontWeight={900} py={2}>
             Job Information
           </Typography>
 
@@ -193,9 +193,10 @@ const ScheduleAJob = () => {
               </RadioGroup>
             </FormControl>
             <FormControl>
-              <FormLabel id="rail">Rail</FormLabel>
+              <FormLabel id="rail-label">Rail</FormLabel>
               <RadioGroup
                 row
+                aria-labelledby="rail-label"
                 name="rail"
                 value={formData.rail}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -231,14 +232,14 @@ const ScheduleAJob = () => {
 
           <Divider sx={{ py: 2 }} />
 
-          <Typography variant="h6" fontWeight={900} py={2}>
+          <Typography variant="h6" component="h3" fontWeight={900} py={2}>
             Paint / Stain Color
           </Typography>
           <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, wallPaint: e.target.value })
+                setFormData({ ...formData, wallColor: e.target.value })
               }
               id="wall"
               label="Wall"
@@ -246,7 +247,7 @@ const ScheduleAJob = () => {
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, trimPaint: e.target.value })
+                setFormData({ ...formData, trimColor: e.target.value })
               }
               id="trim"
               label="Trim"
@@ -254,7 +255,7 @@ const ScheduleAJob = () => {
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, ceilingPaint: e.target.value })
+                setFormData({ ...formData, ceilingColor: e.target.value })
               }
               id="ceiling"
               label="Ceiling"
@@ -262,7 +263,7 @@ const ScheduleAJob = () => {
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, stainPaint: e.target.value })
+                setFormData({ ...formData, stainColor: e.target.value })
               }
               id="stain"
               label="Stain"
@@ -270,7 +271,7 @@ const ScheduleAJob = () => {
             <TextField
               fullWidth
               onChange={(e) =>
-                setFormData({ ...formData, exteriorPaint: e.target.value })
+                setFormData({ ...formData, exteriorColor: e.target.value })
               }
               id="exterior"
               label="Exterior"

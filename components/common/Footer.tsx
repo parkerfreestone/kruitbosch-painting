@@ -6,7 +6,13 @@ import { navItems } from "./Nav";
 const Footer = () => {
   return (
     <>
-      <Box sx={{ background: "#001427", py: 3, color: "#fff" }}>
+      <Box
+        sx={{
+          background: "#001427",
+          py: 3,
+          color: "#fff",
+        }}
+      >
         <Container maxWidth="lg">
           <Typography component="p" variant="h5" fontWeight={900} py={3}>
             Kruitbosch Painting Inc.

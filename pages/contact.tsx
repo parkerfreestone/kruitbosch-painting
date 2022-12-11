@@ -61,7 +61,7 @@ are  the best in the industry!"
         <Grid container spacing={5} sx={{ my: 5 }}>
           <Grid item xs={12} md={6}>
             <Paper variant="outlined" sx={{ p: 5 }}>
-              <Typography variant="h5" fontWeight={900}>
+              <Typography variant="h5" component="h2" fontWeight={900}>
                 Get A Quote
               </Typography>
               <Typography variant="body1">Or Request Information</Typography>
@@ -111,7 +111,7 @@ are  the best in the industry!"
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" fontWeight={900}>
+            <Typography variant="h4" component="h2" fontWeight={900}>
               Simply Give Us A Call!
             </Typography>
             <Stack spacing={2}>
@@ -121,6 +121,7 @@ are  the best in the industry!"
                   <Stack>
                     <Typography
                       variant="h6"
+                      component="h3"
                       fontWeight={900}
                       style={{ marginBottom: 0 }}
                     >
@@ -138,6 +139,7 @@ are  the best in the industry!"
                   <Stack>
                     <Typography
                       variant="h6"
+                      component="h3"
                       fontWeight={900}
                       style={{ marginBottom: 0 }}
                     >
