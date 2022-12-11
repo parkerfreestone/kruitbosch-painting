@@ -12,6 +12,7 @@ import { VisibilitySharp, VisibilityOffSharp } from "@mui/icons-material";
 import { SyntheticEvent, useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import HeroBanner from "../../components/home/HeroBanner";
+import Head from "next/head";
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -35,6 +36,13 @@ const ResetPassword = () => {
 
   return (
     <>
+      <Head>
+        <title>Kruitbosch Painting | Reset Password</title>
+        <meta
+          name="description"
+          content="If you're looking for high quality and dependable paint subcontracting service you have come to the right place."
+        />
+      </Head>
       <Box height="15vh" bgcolor="#001427" />
       <Container maxWidth="xs">
         <Paper

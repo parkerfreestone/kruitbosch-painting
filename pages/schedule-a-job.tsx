@@ -18,6 +18,7 @@ import { Stack } from "@mui/system";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { SyntheticEvent, useState } from "react";
 import HeroBanner from "../components/home/HeroBanner";
@@ -85,6 +86,13 @@ const ScheduleAJob = () => {
 
   return (
     <>
+      <Head>
+        <title>Kruitbosch Painting | Schedule A Job</title>
+        <meta
+          name="description"
+          content="Are you in need of a full service painting contractor? Fill out this form and we'll get back to you!"
+        />
+      </Head>
       <HeroBanner
         heading="Schedule A Job"
         desc="Please Provide Detailed Information in order for us to schedule accordingly. "

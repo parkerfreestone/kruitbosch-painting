@@ -18,6 +18,7 @@ import theme from "../../components/common/theme";
 import { ContactSubmission } from "../../components/admin/tabs/ContactSubmission";
 import { ImageUpload } from "../../components/admin/tabs/ImageUpload";
 import { ResetPasswordEmailConfirmation } from "../../components/admin/ResetPasswordEmailConfirmation";
+import Head from "next/head";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -48,6 +49,13 @@ const Dashboard = () => {
 
   return (
     <>
+      <Head>
+        <title>Kruitbosch Painting | Admin</title>
+        <meta
+          name="description"
+          content="Admin Panel for Kruitbosch Painting Inc."
+        />
+      </Head>
       <Box height="15vh" bgcolor="#001427" />
       {!session ? (
         <>

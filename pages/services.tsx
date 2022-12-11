@@ -14,6 +14,7 @@ import {
 import theme from "../components/common/theme";
 import HeroBanner from "../components/home/HeroBanner";
 import ServicesSection from "../components/home/ServicesSection";
+import Head from "next/head";
 
 const cardContent = [
   {
@@ -59,7 +60,14 @@ const cardContent = [
 const Services = () => {
   const isMediumScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Box>
+    <>
+      <Head>
+        <title>Kruitbosch Painting | Services</title>
+        <meta
+          name="description"
+          content="If you're looking for high quality and dependable paint subcontracting service you have come to the right place."
+        />
+      </Head>
       <HeroBanner
         heading="Services"
         desc="Prompt and accurate scheduling is one of our main priorities."
@@ -81,7 +89,7 @@ const Services = () => {
           cardContent={cardContent}
         />
       </Container>
-    </Box>
+    </>
   );
 };
 

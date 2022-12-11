@@ -7,12 +7,20 @@ import {
   Alert,
   Stack,
 } from "@mui/material";
+import Head from "next/head";
 import { NextLinkComposed } from "../components/common/Link";
 import HeroBanner from "../components/home/HeroBanner";
 
 const Employment = () => {
   return (
     <>
+      <Head>
+        <title>Kruitbosch Painting | Employment</title>
+        <meta
+          name="description"
+          content="Looking for employment? Well go no further, we are accepting applications... come join our team!"
+        />
+      </Head>
       <HeroBanner
         heading="Employment"
         desc="Come Join Our Team! Apply Today!"

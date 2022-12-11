@@ -19,6 +19,7 @@ import HeroBanner from "../components/home/HeroBanner";
 import ServicesSection from "../components/home/ServicesSection";
 import { NextLinkComposed } from "../components/common/Link";
 import { FilterableGallery } from "../components/common/photo-gallery/Gallery";
+import Head from "next/head";
 
 const cardContent = [
   {
@@ -43,6 +44,13 @@ const Home = () => {
 
   return (
     <>
+      <Head>
+        <title>Kruitbosch Painting | Home</title>
+        <meta
+          name="description"
+          content="If you're looking for high quality and dependable paint subcontracting service you have come to the right place."
+        />
+      </Head>
       <HeroBanner
         heading={
           <Typography

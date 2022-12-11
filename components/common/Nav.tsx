@@ -94,10 +94,6 @@ const Nav = () => {
                   <Typography textAlign="center">{name}</Typography>
                 </MenuItem>
               ))}
-              <Divider />
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Admin</Typography>
-              </MenuItem>
             </Menu>
           </Box>
           <Box

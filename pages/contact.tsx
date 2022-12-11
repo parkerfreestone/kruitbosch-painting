@@ -19,6 +19,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import Head from "next/head";
 import { SyntheticEvent, useState } from "react";
 import HeroBanner from "../components/home/HeroBanner";
 
@@ -52,6 +53,13 @@ const Contact = () => {
 
   return (
     <>
+      <Head>
+        <title>Kruitbosch Painting | Contact</title>
+        <meta
+          name="description"
+          content="Need a quote? Have an employment inquiry? Just need to say something? We've got you covered."
+        />
+      </Head>
       <HeroBanner
         heading="Contact Us"
         desc="Our team of professional painters 
