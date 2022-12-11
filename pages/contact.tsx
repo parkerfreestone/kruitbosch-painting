@@ -36,7 +36,7 @@ const Contact = () => {
   const handleFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const { error } = await supabase.from("Contact").insert([formData]);
+    const { error } = await supabase.from("contact").insert([formData]);
 
     if (!error) {
       setSubmissionMessage(
@@ -77,6 +77,7 @@ are  the best in the industry!"
                   />
                   <TextField
                     label="Email"
+                    type="email"
                     value={formData.email}
                     onChange={(e) =>
                       setFormdData({ ...formData, email: e.target.value })

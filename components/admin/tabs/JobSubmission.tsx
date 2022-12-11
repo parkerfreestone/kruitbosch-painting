@@ -1,6 +1,15 @@
 import { ArrowLeftSharp } from "@mui/icons-material";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Modal,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { DetailCard } from "../DetailCard";
 
@@ -8,8 +17,11 @@ export const JobSubmission = () => {
   const [jobList, setJobList] = useState<any[]>([]);
   const [view, setView] = useState<"grid" | "detail">("grid");
   const [selectedJob, setSelectedJob] = useState<Record<string, any>>({});
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
   const supabase = useSupabaseClient();
+
+  const router = useRouter();
 
   useEffect(() => {
     const getInitialData = async () => {
@@ -25,6 +37,19 @@ export const JobSubmission = () => {
 
     getInitialData();
   }, []);
+
+  const handleDeleteSubmission = async () => {
+    try {
+      const { error } = await supabase
+        .from("jobs")
+        .delete()
+        .eq("id", selectedJob?.id);
+      if (error) throw error;
+      router.reload();
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <>
@@ -43,16 +68,31 @@ export const JobSubmission = () => {
                   <Typography variant="body1">
                     Builder - {job.builder}
                   </Typography>
-                  <Button
-                    variant="contained"
-                    onClick={() => {
-                      setSelectedJob(job);
-                      setView("detail");
-                    }}
+                  <Stack
+                    spacing={2}
                     sx={{ mt: 2 }}
+                    direction={{ xs: "column", md: "row" }}
                   >
-                    See Details
-                  </Button>
+                    <Button
+                      variant="contained"
+                      onClick={() => {
+                        setSelectedJob(job);
+                        setView("detail");
+                      }}
+                    >
+                      See Details
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={() => {
+                        setSelectedJob(job);
+                        setDeleteModalIsOpen(true);
+                      }}
+                    >
+                      Delete Submission
+                    </Button>
+                  </Stack>
                 </Paper>
               </Grid>
             ))
@@ -73,6 +113,45 @@ export const JobSubmission = () => {
           <DetailCard submission={selectedJob} />
         </>
       )}
+      <Modal
+        open={deleteModalIsOpen}
+        onClose={() => setDeleteModalIsOpen(false)}
+      >
+        <Paper
+          sx={{
+            p: 5,
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <Typography fontWeight={900}>
+            Are you sure you want to delete this submission?
+          </Typography>
+          <Stack
+            spacing={2}
+            sx={{ mt: 2 }}
+            direction={{ xs: "column", md: "row" }}
+          >
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleDeleteSubmission}
+              disableElevation
+            >
+              Yes
+            </Button>
+            <Button
+              variant="contained"
+              disableElevation
+              onClick={() => setDeleteModalIsOpen(false)}
+            >
+              No
+            </Button>
+          </Stack>
+        </Paper>
+      </Modal>
     </>
   );
 };

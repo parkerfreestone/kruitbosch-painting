@@ -36,10 +36,10 @@ export const Login = () => {
         variant="outlined"
         component="form"
         onSubmit={handleLogin}
-        sx={{ p: 5, my: 15 }}
+        sx={{ p: 5, mt: 15 }}
       >
         <Typography variant="h5" component="h2" fontWeight={900}>
-          Login To Dashboard
+          Login To Admin Panel
         </Typography>
         <Divider sx={{ my: 3 }} />
         <Stack spacing={2}>

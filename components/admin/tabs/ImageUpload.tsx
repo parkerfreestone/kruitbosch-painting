@@ -116,7 +116,7 @@ export const ImageUpload = () => {
           dragProps,
         }) => (
           <Stack spacing={2}>
-            <Stack direction="row" spacing={2}>
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <FormControl>
                 <InputLabel>Gallery</InputLabel>
                 <Select

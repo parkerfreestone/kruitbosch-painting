@@ -1,17 +1,21 @@
 import { ArrowLeftSharp } from "@mui/icons-material";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import { Button, Grid, Modal, Paper, Stack, Typography } from "@mui/material";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { DetailCard } from "../DetailCard";
 
 export const ContactSubmission = () => {
   const [contactList, setContactList] = useState<any[]>([]);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const [view, setView] = useState<"grid" | "detail">("grid");
   const [selectedSubmission, setselectedSubmission] = useState<
     Record<string, any>
   >({});
 
   const supabase = useSupabaseClient();
+
+  const router = useRouter();
 
   useEffect(() => {
     const getInitialData = async () => {
@@ -28,6 +32,21 @@ export const ContactSubmission = () => {
     getInitialData();
   }, []);
 
+  const handleDeleteSubmission = async () => {
+    try {
+      const { error } = await supabase
+        .from("contact")
+        .delete()
+        .eq("id", selectedSubmission?.id);
+
+      if (error) throw error;
+
+      router.reload();
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <>
       <Typography variant="h5" component="h1" mb={3}>
@@ -43,16 +62,32 @@ export const ContactSubmission = () => {
                     {contact.name}
                   </Typography>
                   <Typography variant="body1">{contact.email}</Typography>
-                  <Button
-                    variant="contained"
-                    onClick={() => {
-                      setselectedSubmission(contact);
-                      setView("detail");
-                    }}
+
+                  <Stack
+                    spacing={2}
                     sx={{ mt: 2 }}
+                    direction={{ xs: "column", md: "row" }}
                   >
-                    See Details
-                  </Button>
+                    <Button
+                      variant="contained"
+                      onClick={() => {
+                        setselectedSubmission(contact);
+                        setView("detail");
+                      }}
+                    >
+                      See Details
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={() => {
+                        setselectedSubmission(contact);
+                        setDeleteModalIsOpen(true);
+                      }}
+                    >
+                      Delete Submission
+                    </Button>
+                  </Stack>
                 </Paper>
               </Grid>
             ))
@@ -73,6 +108,45 @@ export const ContactSubmission = () => {
           <DetailCard submission={selectedSubmission} />
         </>
       )}
+      <Modal
+        open={deleteModalIsOpen}
+        onClose={() => setDeleteModalIsOpen(false)}
+      >
+        <Paper
+          sx={{
+            p: 5,
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <Typography fontWeight={900}>
+            Are you sure you want to delete this submission?
+          </Typography>
+          <Stack
+            spacing={2}
+            sx={{ mt: 2 }}
+            direction={{ xs: "column", md: "row" }}
+          >
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleDeleteSubmission}
+              disableElevation
+            >
+              Yes
+            </Button>
+            <Button
+              variant="contained"
+              disableElevation
+              onClick={() => setDeleteModalIsOpen(false)}
+            >
+              No
+            </Button>
+          </Stack>
+        </Paper>
+      </Modal>
     </>
   );
 };

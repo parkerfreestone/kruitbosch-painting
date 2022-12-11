@@ -17,6 +17,7 @@ import { JobSubmission } from "../../components/admin/tabs/JobSubmission";
 import theme from "../../components/common/theme";
 import { ContactSubmission } from "../../components/admin/tabs/ContactSubmission";
 import { ImageUpload } from "../../components/admin/tabs/ImageUpload";
+import { ResetPasswordEmailConfirmation } from "../../components/admin/ResetPasswordEmailConfirmation";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -34,6 +35,7 @@ const TabPanel = ({ children, index, value, ...other }: TabPanelProps) => {
 
 const Dashboard = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  const [showResetPassword, setShowResetPassword] = useState(false);
 
   const session = useSession();
   const supabase = useSupabaseClient();
@@ -48,7 +50,20 @@ const Dashboard = () => {
     <>
       <Box height="15vh" bgcolor="#001427" />
       {!session ? (
-        <Login />
+        <>
+          {showResetPassword ? <ResetPasswordEmailConfirmation /> : <Login />}
+          <Container maxWidth="xs">
+            <Button
+              onClick={() => setShowResetPassword(!showResetPassword)}
+              fullWidth
+              sx={{ mt: 2 }}
+            >
+              {showResetPassword
+                ? "Go back to login"
+                : "Forgot your password? You can reset it here."}
+            </Button>
+          </Container>
+        </>
       ) : (
         <Container maxWidth="lg">
           <Box

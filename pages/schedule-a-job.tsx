@@ -18,11 +18,12 @@ import { Stack } from "@mui/system";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 import { SyntheticEvent, useState } from "react";
 import HeroBanner from "../components/home/HeroBanner";
 
 const ScheduleAJob = () => {
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState<any | null>({
     name: "",
     builder: "",
     startDate: null,
@@ -44,6 +45,8 @@ const ScheduleAJob = () => {
 
   const supabase = useSupabaseClient();
 
+  const router = useRouter();
+
   const handleFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
@@ -60,7 +63,24 @@ const ScheduleAJob = () => {
       `There was an error submitting the form. Please contact us if you keep having issues: ${error.message}`
     );
 
-    setFormData(null);
+    setFormData({
+      name: "",
+      builder: "",
+      startDate: null,
+      job: "",
+      lotNumber: 0,
+      totalSqft: 0,
+      style: "",
+      finish: "",
+      rail: "",
+      wallColor: "",
+      trimColor: "",
+      ceilingColor: "",
+      stainColor: "",
+      exteriorColor: "",
+      colorChanges: "",
+      extras: "",
+    });
   };
 
   return (
@@ -117,7 +137,7 @@ const ScheduleAJob = () => {
               onChange={(newValue) =>
                 setFormData({ ...formData, startDate: newValue })
               }
-              value={formData.startDate}
+              value={formData?.startDate}
               renderInput={(params) => <TextField {...params} sx={{ mb: 2 }} />}
             />
           </LocalizationProvider>
@@ -167,7 +187,7 @@ const ScheduleAJob = () => {
               <RadioGroup
                 row
                 name="finish"
-                value={formData.finish}
+                value={formData?.finish}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setFormData({
                     ...formData,
@@ -198,7 +218,7 @@ const ScheduleAJob = () => {
                 row
                 aria-labelledby="rail-label"
                 name="rail"
-                value={formData.rail}
+                value={formData?.rail}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setFormData({
                     ...formData,
@@ -284,7 +304,7 @@ const ScheduleAJob = () => {
             label="Color Changes"
             placeholder="Description and Color"
             sx={{ mt: 2 }}
-            value={formData.colorChanges}
+            value={formData?.colorChanges}
             onChange={(e) =>
               setFormData({ ...formData, colorChanges: e.target.value })
             }
@@ -296,7 +316,7 @@ const ScheduleAJob = () => {
             label="Extras"
             placeholder="Please Provide any Addtional Information"
             sx={{ mt: 2 }}
-            value={formData.extras}
+            value={formData?.extras}
             onChange={(e) =>
               setFormData({ ...formData, extras: e.target.value })
             }
