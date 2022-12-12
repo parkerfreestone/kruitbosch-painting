@@ -29,7 +29,7 @@ export const ResetPasswordEmailConfirmation = () => {
     e.preventDefault();
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: "http://localhost:3000/admin/reset-password",
+        redirectTo: process.env.SITE_URL,
       });
       if (error) throw error;
       else setShowMessage(true);
