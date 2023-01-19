@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   EmailRounded,
   MenuSharp,
   PhoneAndroidRounded,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
 import {
   AppBar,
   Box,
@@ -16,24 +16,27 @@ import {
   Stack,
   Toolbar,
   Typography,
-} from '@mui/material';
-import Image from 'next/image';
-import logo from '../../public/images/logo.svg';
-import { NextLinkComposed } from './Link';
-import Link from 'next/link';
+  useTheme,
+} from "@mui/material";
+import Image from "next/image";
+import logo from "../../public/images/logo.svg";
+import { NextLinkComposed } from "./Link";
+import Link from "next/link";
 
 export const navItems = [
-  { name: 'Home', route: '/' },
-  { name: 'Services', route: '' },
-  { name: 'About Us', route: '/about' },
-  { name: 'Employment', route: '/employment' },
+  { name: "Home", route: "/" },
+  { name: "Services", route: "" },
+  { name: "Employment", route: "/employment" },
 ];
 
 const Nav = () => {
+  const [navProps, setNavProps] = useState({});
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [servicesAnchorEl, setServicesAnchorEl] = useState<null | HTMLElement>(
     null
   );
+
+  const theme = useTheme();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -51,26 +54,50 @@ const Nav = () => {
     setServicesAnchorEl(null);
   };
 
+  const stickNavbar = () => {
+    if (window !== undefined) {
+      let windowHeight = window.scrollY;
+      windowHeight > 300
+        ? setNavProps({
+            position: "fixed",
+            backgroundColor: theme.palette.primary.main,
+            top: 0,
+            left: 0,
+          })
+        : setNavProps({});
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", stickNavbar);
+  }, []);
+
   return (
     <AppBar
       position="absolute"
-      sx={{ background: 'transparent', boxShadow: 'none', mt: 3 }}
+      sx={{
+        background: "transparent",
+        boxShadow: "none",
+        py: 2,
+        transition: "0.3s ease in",
+        ...navProps,
+      }}
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Box
             sx={{
-              display: { xs: 'none', md: 'flex' },
+              display: { xs: "none", md: "flex" },
               mr: { xs: 0, md: 2 },
             }}
           >
-            <Link href={'/'}>
+            <Link href={"/"}>
               <div>
                 <Image src={logo} alt="KPI" width={65} />
               </div>
             </Link>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               onClick={handleOpenNavMenu}
@@ -82,17 +109,17 @@ const Nav = () => {
               id="nav-menu"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
+              sx={{ display: { xs: "block", md: "none" } }}
             >
               {navItems.map(({ name, route }) => (
                 <MenuItem
@@ -109,10 +136,10 @@ const Nav = () => {
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: 'block', flexGrow: 1, md: 'none' },
+              display: { xs: "block", flexGrow: 1, md: "none" },
             }}
           >
-            <Link href={'/'}>
+            <Link href={"/"}>
               <div>
                 <Image
                   src={logo}
@@ -123,14 +150,14 @@ const Nav = () => {
               </div>
             </Link>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {navItems.map(({ name, route }) =>
-              name.toLowerCase() === 'services' ? (
+              name.toLowerCase() === "services" ? (
                 <>
                   <Button
                     key={name}
                     onClick={handleOpenServicesMenu}
-                    sx={{ my: 2, mr: 1, color: 'white', display: 'block' }}
+                    sx={{ my: 2, mr: 1, color: "white", display: "block" }}
                   >
                     {name}
                   </Button>
@@ -138,12 +165,12 @@ const Nav = () => {
                     id="services-menu"
                     anchorEl={servicesAnchorEl}
                     anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'left',
+                      vertical: "bottom",
+                      horizontal: "left",
                     }}
                     transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'left',
+                      vertical: "top",
+                      horizontal: "left",
                     }}
                     open={Boolean(servicesAnchorEl)}
                     onClose={handleCloseServicesMenu}
@@ -214,7 +241,7 @@ const Nav = () => {
                   key={name}
                   component={NextLinkComposed}
                   to={route}
-                  sx={{ my: 2, mr: 1, color: 'white', display: 'block' }}
+                  sx={{ my: 2, mr: 1, color: "white", display: "block" }}
                 >
                   {name}
                 </Button>
@@ -224,8 +251,8 @@ const Nav = () => {
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: 'none', md: 'flex' },
-              justifyContent: 'flex-end',
+              display: { xs: "none", md: "flex" },
+              justifyContent: "flex-end",
               gap: 2,
             }}
           >
@@ -234,7 +261,7 @@ const Nav = () => {
               variant="outlined"
               color="secondary"
               href="tel:801-499-1657"
-              sx={{ color: 'white', borderColor: 'white' }}
+              sx={{ color: "white", borderColor: "white" }}
             >
               (801) 499-1657
             </Button>
@@ -243,7 +270,7 @@ const Nav = () => {
               variant="outlined"
               color="secondary"
               href="mailto:emailhere@gmail.com"
-              sx={{ color: 'white', borderColor: 'white' }}
+              sx={{ color: "white", borderColor: "white" }}
             >
               emailhere@gmail.com
             </Button>

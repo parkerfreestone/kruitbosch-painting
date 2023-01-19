@@ -1,21 +1,20 @@
-import { ArrowDownwardRounded } from '@mui/icons-material';
 import {
   Box,
   Typography,
   Container,
   Grid,
   useMediaQuery,
-  IconButton,
-} from '@mui/material';
-import { MouseEventHandler, ReactElement, useState } from 'react';
-import theme from './theme';
+  Fade,
+} from "@mui/material";
+import { ReactElement, useState } from "react";
+import theme from "./theme";
 
 interface HeroBannerProps {
   heading: string | ReactElement;
   desc?: string;
   actionArea?: React.ReactNode;
   imagePath?: string;
-  height?: 'short' | 'medium' | 'long';
+  height?: "short" | "medium" | "long";
   highlightIndex?: number;
   highlightColor?: string;
 }
@@ -27,7 +26,7 @@ const HeroBanner = ({
   height,
   imagePath,
 }: HeroBannerProps) => {
-  const [backgroundPosition, setBackgroundPosition] = useState({
+  const [, setBackgroundPosition] = useState({
     x: 0,
     y: 0,
   });
@@ -36,7 +35,7 @@ const HeroBanner = ({
     setBackgroundPosition({ x: e.clientX, y: e.clientY });
   };
 
-  const isMediumScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box
@@ -46,52 +45,49 @@ const HeroBanner = ({
       sx={{
         background: imagePath
           ? `linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)), url(${imagePath})`
-          : '#001427',
-        backgroundPositionX: `${-backgroundPosition.x / 20}px`,
-        backgroundPositionY: `${-backgroundPosition.y / 20}px`,
-        backgroundSize: 'cover',
-        height: height === 'long' ? '100vh' : 'auto',
+          : "#001427",
+        backgroundSize: "cover",
+        height: "auto",
         py:
-          !!height && height === 'short'
+          !!height && height === "short"
             ? 3
-            : height === 'medium'
+            : height === "medium"
             ? 5
-            : height === 'long'
+            : height === "long"
             ? 25
             : 3,
       }}
     >
       <Container maxWidth="lg">
         <Grid container sx={{ pt: { xs: 5, md: 10 } }}>
-          <Grid item xs={12} md={7}>
-            {typeof heading === 'string' ? (
-              <Typography
-                variant={isMediumScreen ? 'h4' : 'h2'}
-                component="h1"
-                fontWeight={900}
-                color="white"
-                textTransform="uppercase"
-              >
-                {heading}
-              </Typography>
-            ) : (
-              heading
-            )}
-            {desc ? <Typography color="white">{desc}</Typography> : null}
+          {typeof heading === "string" ? (
+            <Grid item xs={12} md={9}>
+              <Fade in style={{ transitionDelay: "100ms" }}>
+                <Typography
+                  variant={isMediumScreen ? "h4" : "h2"}
+                  component="h1"
+                  fontWeight={900}
+                  color="white"
+                  textTransform="uppercase"
+                >
+                  {heading}
+                </Typography>
+              </Fade>
+            </Grid>
+          ) : (
+            heading
+          )}
+          {desc ? (
+            <Grid item xs={12} md={6}>
+              <Fade in style={{ transitionDelay: "150ms" }}>
+                <Typography color="white">{desc}</Typography>
+              </Fade>
+            </Grid>
+          ) : null}
+          <Grid item xs={12}>
             {actionArea}
           </Grid>
         </Grid>
-        {height === 'long' && (
-          <Box position="absolute" bottom={20} left="50%">
-            <IconButton
-              size="large"
-              sx={{ color: 'white' }}
-              href="#section-two"
-            >
-              <ArrowDownwardRounded />
-            </IconButton>
-          </Box>
-        )}
       </Container>
     </Box>
   );
