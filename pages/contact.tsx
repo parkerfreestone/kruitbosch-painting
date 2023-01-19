@@ -4,7 +4,7 @@ import {
   FaxSharp,
   QuestionAnswerSharp,
   QuestionMarkSharp,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -17,19 +17,19 @@ import {
   Stack,
   TextField,
   Typography,
-} from "@mui/material";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import Head from "next/head";
-import { SyntheticEvent, useState } from "react";
-import HeroBanner from "../components/home/HeroBanner";
+} from '@mui/material';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import Head from 'next/head';
+import { SyntheticEvent, useState } from 'react';
+import HeroBanner from '../components/common/HeroBanner';
 
 const Contact = () => {
-  const [submissionMessage, setSubmissionMessage] = useState<string | null>("");
+  const [submissionMessage, setSubmissionMessage] = useState<string | null>('');
   const [formData, setFormdData] = useState<any>({
-    name: "",
-    email: "",
-    phone: "",
-    request: "",
+    name: '',
+    email: '',
+    phone: '',
+    request: '',
   });
 
   const supabase = useSupabaseClient();
@@ -37,13 +37,13 @@ const Contact = () => {
   const handleFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const { error } = await supabase.from("contact").insert([formData]);
+    const { error } = await supabase.from('contact').insert([formData]);
 
     if (!error) {
       setSubmissionMessage(
-        "Form successfully submitted. We will get back to you as soon as possible."
+        'Form successfully submitted. We will get back to you as soon as possible.'
       );
-      setFormdData({ name: "", email: "", phone: "", request: "" });
+      setFormdData({ name: '', email: '', phone: '', request: '' });
       return;
     }
 
@@ -170,7 +170,7 @@ are  the best in the industry!"
         message={submissionMessage}
         onClose={() => setSubmissionMessage(null)}
         autoHideDuration={4000}
-        anchorOrigin={{ horizontal: "center", vertical: "top" }}
+        anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
       />
     </>
   );

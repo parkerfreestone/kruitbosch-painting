@@ -1,4 +1,4 @@
-import { InfoOutlined } from "@mui/icons-material";
+import { InfoOutlined } from '@mui/icons-material';
 import {
   Button,
   Container,
@@ -6,10 +6,10 @@ import {
   Typography,
   Alert,
   Stack,
-} from "@mui/material";
-import Head from "next/head";
-import { NextLinkComposed } from "../components/common/Link";
-import HeroBanner from "../components/home/HeroBanner";
+} from '@mui/material';
+import Head from 'next/head';
+import { NextLinkComposed } from '../components/common/Link';
+import HeroBanner from '../components/common/HeroBanner';
 
 const Employment = () => {
   return (

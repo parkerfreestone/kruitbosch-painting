@@ -7,15 +7,14 @@ import {
   Box,
   Button,
   Container,
-} from "@mui/material";
-import { VisibilitySharp, VisibilityOffSharp } from "@mui/icons-material";
-import { SyntheticEvent, useState } from "react";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import HeroBanner from "../../components/home/HeroBanner";
-import Head from "next/head";
+} from '@mui/material';
+import { VisibilitySharp, VisibilityOffSharp } from '@mui/icons-material';
+import { SyntheticEvent, useState } from 'react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import Head from 'next/head';
 
 const ResetPassword = () => {
-  const [newPassword, setNewPassword] = useState("");
+  const [newPassword, setNewPassword] = useState('');
   const [showMessage, setShowMessage] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -28,7 +27,7 @@ const ResetPassword = () => {
         password: newPassword,
       });
       if (error) setShowMessage(true);
-      else alert("Password successfully reset!");
+      else alert('Password successfully reset!');
     } catch (error: any) {
       alert(error.error_description || error.message);
     }
@@ -58,7 +57,7 @@ const ResetPassword = () => {
           <TextField
             fullWidth
             label="New Password"
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             value={newPassword}
             InputProps={{
               endAdornment: (

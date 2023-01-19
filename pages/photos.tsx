@@ -1,7 +1,7 @@
-import { Container } from "@mui/system";
-import Head from "next/head";
-import { FilterableGallery } from "../components/common/photo-gallery/Gallery";
-import HeroBanner from "../components/home/HeroBanner";
+import { Container } from '@mui/system';
+import Head from 'next/head';
+import { FilterableGallery } from '../components/common/photo-gallery/Gallery';
+import HeroBanner from '../components/common/HeroBanner';
 
 const Photos = () => {
   return (
