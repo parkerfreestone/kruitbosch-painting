@@ -19,3 +19,38 @@ main {
   flex-direction: column;
   min-height: 100vh;
 }
+
+.scroll-indicator {
+  position: absolute;
+  width: 25px;
+  height: 45px;
+  border: 1px solid #fff;
+  border-radius: 25px;
+  left: 50%;
+  bottom: 5%;
+}
+
+.scroll-indicator::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #fff;
+  margin-left: 9px;
+  top: 8px;
+  border-radius: 4px;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-name: scroll;
+}
+
+@keyframes scroll {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    height: 13px;
+  }
+}

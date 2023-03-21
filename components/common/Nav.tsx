@@ -10,6 +10,7 @@ import {
   Button,
   Container,
   Divider,
+  Grid,
   IconButton,
   Menu,
   MenuItem,
@@ -119,6 +120,7 @@ const Nav = () => {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
+              disableScrollLock={true}
               sx={{ display: { xs: "block", md: "none" } }}
             >
               {navItems.map(({ name, route }) => (
@@ -172,68 +174,28 @@ const Nav = () => {
                       vertical: "top",
                       horizontal: "left",
                     }}
+                    disableScrollLock={true}
                     open={Boolean(servicesAnchorEl)}
                     onClose={handleCloseServicesMenu}
                   >
-                    <Stack direction="row" gap={2} p={2}>
-                      <Box>
-                        <Typography variant="button" fontWeight={900} px={2}>
-                          Residential
-                        </Typography>
-                        <MenuItem
-                          component={NextLinkComposed}
-                          to="/services/residential/custom"
-                        >
-                          Custom
-                        </MenuItem>
-                        <MenuItem
-                          component={NextLinkComposed}
-                          to="/services/residential/multi-family"
-                        >
-                          Multi-Family
-                        </MenuItem>
-                        <MenuItem
-                          component={NextLinkComposed}
-                          to="/services/residential/interior-exterior-finishes"
-                        >
-                          Interior/Exterior Finishes
-                        </MenuItem>
-                      </Box>
-
-                      <Divider orientation="vertical" flexItem />
-
-                      <Box>
-                        <Typography variant="button" fontWeight={900} px={2}>
-                          Industrial Coatings
-                        </Typography>
-                        <MenuItem
-                          component={NextLinkComposed}
-                          to="/services/industrial-coatings/sealer"
-                        >
-                          Sealer
-                        </MenuItem>
-                        <MenuItem
-                          component={NextLinkComposed}
-                          to="/services/industrial-coatings/acid-wash-grinding"
-                        >
-                          Acid Wash/Grinding
-                        </MenuItem>
-                      </Box>
-
-                      <Divider orientation="vertical" flexItem />
-
-                      <Box>
-                        <Typography variant="button" fontWeight={900} px={2}>
-                          Commercial
-                        </Typography>
-                        <MenuItem
-                          component={NextLinkComposed}
-                          to="/services/commercial/graffiti"
-                        >
-                          Graffiti
-                        </MenuItem>
-                      </Box>
-                    </Stack>
+                    <MenuItem
+                      component={NextLinkComposed}
+                      to="/services/commercial"
+                    >
+                      Commercial
+                    </MenuItem>
+                    <MenuItem
+                      component={NextLinkComposed}
+                      to="/services/industrial-coatings"
+                    >
+                      Industrial Coatings
+                    </MenuItem>
+                    <MenuItem
+                      component={NextLinkComposed}
+                      to="/services/residential"
+                    >
+                      Residential
+                    </MenuItem>
                   </Menu>
                 </>
               ) : (
@@ -269,10 +231,11 @@ const Nav = () => {
               startIcon={<EmailRounded />}
               variant="outlined"
               color="secondary"
-              href="mailto:emailhere@gmail.com"
+              href="mailto:kpi@kruitboschpaint.com"
+              target="_blank"
               sx={{ color: "white", borderColor: "white" }}
             >
-              emailhere@gmail.com
+              kpi@kruitboschpaint.com
             </Button>
           </Box>
         </Toolbar>

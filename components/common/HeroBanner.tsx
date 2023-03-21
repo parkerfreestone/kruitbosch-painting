@@ -89,6 +89,7 @@ const HeroBanner = ({
           </Grid>
         </Grid>
       </Container>
+      {height === "long" && <div className="scroll-indicator"></div>}
     </Box>
   );
 };
