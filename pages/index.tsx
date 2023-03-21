@@ -98,8 +98,8 @@ const Home = () => {
           variant={isMediumScreen ? "body1" : "h6"}
           mb={3}
         >
-          We offer services in all three of these areas, if you're interested
-          please give us a call! (801) 499-1657
+          We offer services in all three of these areas, if you&apos;re
+          interested please give us a call! (801) 499-1657
         </Typography>
         <ServicesSection
           cardContent={cardContent}

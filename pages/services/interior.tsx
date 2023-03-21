@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import Head from "next/head";
 import React from "react";
-import HeroBanner from "../../../components/common/HeroBanner";
-import Photos from "../../../components/common/Photos";
+import HeroBanner from "../../components/common/HeroBanner";
+import Photos from "../../components/common/Photos";
 
 const Interior = () => {
   return (
