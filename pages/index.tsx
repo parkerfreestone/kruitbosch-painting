@@ -131,23 +131,23 @@ const Home = () => {
           </Typography>
           <Fade in>
             <Typography variant="body1" mt={2}>
-              KPI’s original founding father was introduced to painting in the
-              late 50’s early 60’s. He was 19 years old. He was hooked right
-              away. For the next 10 years painting was a hobby and took a back
-              seat to raising a family and many full time jobs. During that 10
-              years he painted for family and friends; many family rooms,
-              kitchen remodels and even an occasional new build.
+              KPI&apos;s original founding father was introduced to painting in
+              the late 50&apos;s early 60&apos;s. He was 19 years old. He was
+              hooked right away. For the next 10 years painting was a hobby and
+              took a back seat to raising a family and many full time jobs.
+              During that 10 years he painted for family and friends; many
+              family rooms, kitchen remodels and even an occasional new build.
             </Typography>
           </Fade>
           <Fade in>
             <Typography variant="body1" mt={2}>
-              In the early 70’s he had an opportunity to paint near the lodge at
-              Powder Mountain. His hobby quickly evolved at this point to a 96
-              unit apartment complex and 350 new house construction. This
-              created the need for generation 2 to step in – KPI was now a
-              business. Both generations had a concentrated effort on quality
-              and building long term relationships with local contractors all up
-              and down the Wasatch front and beyond.
+              In the early 70&apos;s he had an opportunity to paint near the
+              lodge at Powder Mountain. His hobby quickly evolved at this point
+              to a 96 unit apartment complex and 350 new house construction.
+              This created the need for generation 2 to step in &#8212; KPI was
+              now a business. Both generations had a concentrated effort on
+              quality and building long term relationships with local
+              contractors all up and down the Wasatch front and beyond.
             </Typography>
           </Fade>
           <Fade in>
