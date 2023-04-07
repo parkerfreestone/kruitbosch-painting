@@ -4,17 +4,17 @@ import React from "react";
 import HeroBanner from "../../components/common/HeroBanner";
 import Photos from "../../components/common/Photos";
 
-const Exterior = () => {
+const IndustrialCoatings = () => {
   return (
     <>
       <Head>
-        <title>Kruitbosch Painting | Services | Residential | Exterior</title>
+        <title>Kruitbosch Painting | Services | Industrial Coatings</title>
         <meta
           name="description"
           content="Looking for employment? Well go no further, we are accepting applications... come join our team!"
         />
       </Head>
-      <HeroBanner heading="Residential" desc="Exterior Finishes" />
+      <HeroBanner heading="Industrial Coatings" />
       <Container maxWidth="lg" sx={{ mb: 15 }}>
         <Box my={5}></Box>
         <Photos />
@@ -23,4 +23,4 @@ const Exterior = () => {
   );
 };
 
-export default Exterior;
+export default IndustrialCoatings;

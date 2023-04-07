@@ -59,7 +59,7 @@ const HeroBanner = ({
       }}
     >
       <Container maxWidth="lg">
-        <Grid container sx={{ pt: { xs: 5, md: 10 } }}>
+        <Grid container sx={{ pt: { xs: 8, md: 10 } }}>
           {typeof heading === "string" ? (
             <Grid item xs={12} md={9}>
               <Fade in style={{ transitionDelay: "100ms" }}>

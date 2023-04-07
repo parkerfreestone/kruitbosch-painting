@@ -28,7 +28,7 @@ const Residential = () => {
             Interior
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <Typography
                 variant="h5"
                 color={"secondary"}
@@ -45,7 +45,7 @@ const Residential = () => {
                 walls/ceiling in a warmer color, creating two color tones.
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <Typography
                 variant="h5"
                 fontWeight={900}
@@ -87,7 +87,12 @@ const Residential = () => {
             Our consultants start with understanding what feeling you are trying
             to achieve within your space for example rustic, modern, casual etc.
           </Typography>
-          <Typography variant="h5" component="h3" fontWeight={900}>
+          <Typography
+            variant="h5"
+            component="h3"
+            fontWeight={900}
+            color="secondary"
+          >
             Accent Walls
           </Typography>
           <Typography variant="body1">
@@ -102,9 +107,6 @@ const Residential = () => {
           <Typography variant="body1" mt={2}>
             Our consultants start with understanding what feeling you are trying
             to achieve within your space for example rustic, modern, casual etc.
-          </Typography>
-          <Typography variant="body1" mt={2}>
-            Sealing ● Coating ● Garage and Basement Floors
           </Typography>
         </Box>
         <Photos />
