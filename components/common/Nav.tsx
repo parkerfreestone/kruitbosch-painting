@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react";
 import {
+  Brush,
+  BrushRounded,
+  BrushSharp,
+  CabinSharp,
+  ChevronLeft,
+  CorporateFareSharp,
+  CropRotateSharp,
   EmailRounded,
+  FormatPaintSharp,
+  Home,
+  HomeSharp,
+  MailSharp,
   MenuSharp,
+  People,
+  PeopleSharp,
   PhoneAndroidRounded,
 } from "@mui/icons-material";
 import {
@@ -10,8 +23,14 @@ import {
   Button,
   Container,
   Divider,
+  Drawer,
   Grid,
   IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
   Menu,
   MenuItem,
   Stack,
@@ -24,20 +43,37 @@ import logo from "../../public/images/logo.svg";
 import { NextLinkComposed } from "./Link";
 import Link from "next/link";
 
+// !! NOT SUPER PROUD OF THIS COMPONENT BUT NEED TO SHIP WEBSITE FAST !! //
+
 export const navItems = [
-  { name: "Home", route: "/" },
-  { name: "Services", route: "" },
-  { name: "Employment", route: "/employment" },
+  { name: "Home", icon: <Home />, route: "/" },
+  { name: "Services", icon: <Brush />, route: "" },
+  { name: "Employment", icon: <People />, route: "/employment" },
+];
+
+export const navMobile = [
+  { name: "Home", icon: <HomeSharp />, route: "/" },
+  { name: "Employment", icon: <PeopleSharp />, route: "/employment" },
+  {
+    name: "Commercial",
+    icon: <CorporateFareSharp />,
+    route: "/services/commercial",
+  },
+  {
+    name: "Industrial Coatings",
+    icon: <FormatPaintSharp />,
+    route: "/services/industrial-coatings",
+  },
+  { name: "Residential", icon: <CabinSharp />, route: "/services/residential" },
 ];
 
 const Nav = () => {
   const [navProps, setNavProps] = useState({});
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [servicesAnchorEl, setServicesAnchorEl] = useState<null | HTMLElement>(
     null
   );
-
-  const theme = useTheme();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -54,6 +90,8 @@ const Nav = () => {
   const handleCloseServicesMenu = () => {
     setServicesAnchorEl(null);
   };
+
+  const theme = useTheme();
 
   const stickNavbar = () => {
     if (window !== undefined) {
@@ -72,6 +110,70 @@ const Nav = () => {
   useEffect(() => {
     window.addEventListener("scroll", stickNavbar);
   }, []);
+
+  const list = (
+    <Box
+      role="presentation"
+      onClick={() => setDrawerOpen(!drawerOpen)}
+      onKeyDown={() => setDrawerOpen(!drawerOpen)}
+    >
+      <List>
+        {navMobile.map(({ name, route, icon }, i) => (
+          <>
+            <ListItem key={name} disablePadding>
+              <ListItemButton component={NextLinkComposed} to={route}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={name} />
+              </ListItemButton>
+            </ListItem>
+            {i === 1 ? (
+              <>
+                <ListItem>
+                  <ListItemText
+                    primaryTypographyProps={{
+                      fontWeight: "bold",
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    Services
+                  </ListItemText>
+                </ListItem>
+              </>
+            ) : null}
+          </>
+        ))}
+        <ListItem>
+          <ListItemText
+            primaryTypographyProps={{
+              fontWeight: "bold",
+              fontSize: "1.2rem",
+            }}
+          >
+            Contact
+          </ListItemText>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} href="tel:8014991657">
+            <ListItemIcon>
+              <PhoneAndroidRounded />
+            </ListItemIcon>
+            <ListItemText>(801) 499-1657</ListItemText>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton
+            component={Link}
+            href="mailto:kpi@kruitboschpaint.com"
+          >
+            <ListItemIcon>
+              <MailSharp />
+            </ListItemIcon>
+            <ListItemText>kpi@kruitboschpaint.com</ListItemText>
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Box>
+  );
 
   return (
     <AppBar
@@ -92,7 +194,7 @@ const Nav = () => {
               mr: { xs: 0, md: 2 },
             }}
           >
-            <Link href={"/"}>
+            <Link href="/">
               <div>
                 <Image src={logo} alt="KPI" width={65} />
               </div>
@@ -101,39 +203,18 @@ const Nav = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              onClick={handleOpenNavMenu}
+              onClick={() => setDrawerOpen(!drawerOpen)}
               color="inherit"
             >
               <MenuSharp />
             </IconButton>
-            <Menu
-              id="nav-menu"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              disableScrollLock={true}
-              sx={{ display: { xs: "block", md: "none" } }}
+            <Drawer
+              open={drawerOpen}
+              onClose={() => setDrawerOpen(false)}
+              anchor="left"
             >
-              {navItems.map(({ name, route }) => (
-                <MenuItem
-                  key={name}
-                  component={NextLinkComposed}
-                  to={route}
-                  onClick={handleCloseNavMenu}
-                >
-                  <Typography textAlign="center">{name}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              {list}
+            </Drawer>
           </Box>
           <Box
             sx={{

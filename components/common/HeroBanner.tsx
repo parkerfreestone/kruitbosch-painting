@@ -54,7 +54,9 @@ const HeroBanner = ({
             : height === "medium"
             ? 5
             : height === "long"
-            ? 25
+            ? isMediumScreen
+              ? 15
+              : 25
             : 3,
       }}
     >

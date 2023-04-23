@@ -1,11 +1,4 @@
-import {
-  Box,
-  Card,
-  Container,
-  Grid,
-  Typography,
-  CardContent,
-} from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import React from "react";
 import HeroBanner from "../../components/common/HeroBanner";
@@ -18,7 +11,7 @@ const Residential = () => {
         <title>Kruitbosch Painting | Services | Residential</title>
         <meta
           name="description"
-          content="Looking for employment? Well go no further, we are accepting applications... come join our team!"
+          content="Our Residential services range from Interior, to Exterior, and even Custom jobs."
         />
       </Head>
       <HeroBanner heading="Residential" desc="" />

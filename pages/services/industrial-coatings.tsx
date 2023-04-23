@@ -1,27 +1,20 @@
-import {
-  Box,
-  Card,
-  Container,
-  Grid,
-  Typography,
-  CardContent,
-} from "@mui/material";
+import { Container, Typography, Box, Card, CardContent } from "@mui/material";
 import Head from "next/head";
 import React from "react";
 import HeroBanner from "../../components/common/HeroBanner";
 import Photos from "../../components/common/Photos";
 
-const Commercial = () => {
+const IndustrialCoatings = () => {
   return (
     <>
       <Head>
-        <title>Kruitbosch Painting | Services | Commercial</title>
+        <title>Kruitbosch Painting | Services | Industrial Coatings</title>
         <meta
           name="description"
-          content="All our commercial services. Come see what we can do for you business!"
+          content="Check out what we can do for you business in terms of Industrial Coatings!"
         />
       </Head>
-      <HeroBanner heading="Commercial" />
+      <HeroBanner heading="Industrial Coatings" />
       <Container maxWidth="lg" sx={{ mb: 15 }}>
         <Box my={5}>
           <Typography variant="h4" component="h2" fontWeight={900}>
@@ -62,4 +55,4 @@ const Commercial = () => {
   );
 };
 
-export default Commercial;
+export default IndustrialCoatings;
